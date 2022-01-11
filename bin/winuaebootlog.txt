@@ -1,0 +1,437 @@
+﻿
+WinUAE 4.4.0 (2020.07.01) 64-bit (10.0.19043 [1]) 64-bit 9.6.3A09 8 10:13 0
+(c) 1995-2001 Bernd Schmidt   - Core UAE concept and implementation.
+(c) 1998-2020 Toni Wilen      - Win32 port, core code updates.
+(c) 1996-2001 Brian King      - Win32 port, Picasso96 RTG, and GUI.
+(c) 1996-1999 Mathias Ortmann - Win32 port and bsdsocket support.
+(c) 2000-2001 Bernd Meyer     - JIT engine.
+(c) 2000-2005 Bernd Roesch    - MIDI input, many fixes.
+Press F12 to show the Settings Dialog (GUI), Alt-F4 to quit.
+End+F1 changes floppy 0, End+F2 changes floppy 1, etc.
+'D:\data\amiga\Super-Star-Wars\bin\winuae.exe'
+EXE: 'D:\data\amiga\Super-Star-Wars\bin\', DATA: 'D:\data\amiga\Super-Star-Wars\bin\', PLUGIN: 'D:\data\amiga\Super-Star-Wars\bin\'
+'D:\data\amiga\Super-Star-Wars\bin\winuae.ini' enabled
+MMAN: Total physical RAM 8077 MB, all RAM 10706 MB
+MMAN: Attempting to reserve: 2048 MB
+VM: Reserve  0x80000000 bytes, try address 0x80000000
+VM: Reserve  0x80000000 bytes, got address 0x80000000
+MMAN: Reserved 0000000080000000-0000000100000000 (0x80000000 2048M)
+CLOCKFREQ: QPF 10.00MHz (5.00MHz, DIV=2)
+Enumerating display devices.. 
+Sorting devices and modes..
+Intel(R) HD Graphics 4000 '\\.\DISPLAY1' [PCI\VEN_8086&DEV_0166&SUBSYS_15A71043&REV_09]
+-: Generic PnP Monitor (1920*1080) * [\Registry\Machine\System\CurrentControlSet\Control\Class\{4d36e96e-e325-11ce-bfc1-08002be10318}\0001]
+0: 320x200, 32-bit (60)
+1: 320x240, 32-bit (60)
+2: 400x300, 32-bit (60)
+3: 512x384, 32-bit (60)
+4: 640x400, 32-bit (60)
+5: 640x480, 32-bit (60)
+6: 800x600, 32-bit (60)
+7: 1024x768, 32-bit (60)
+8: 1152x864, 32-bit (60)
+9: 1280x600, 32-bit (60)
+10: 1280x720, 32-bit (60)
+11: 1280x768, 32-bit (60)
+12: 1280x800, 32-bit (60)
+13: 1280x960, 32-bit (60)
+14: 1280x1024, 32-bit (60)
+15: 1360x768, 32-bit (60)
+16: 1366x768, 32-bit (60)
+17: 1400x1050, 32-bit (60)
+18: 1440x900, 32-bit (60)
+19: 1600x900, 32-bit (60)
+20: 1680x1050, 32-bit (60)
+21: 1920x1080, 32-bit (60)
+22 display modes.
+Desktop: W=1920 H=1080 B=32 HZ=60. CXVS=1920 CYVS=1080
+Enumerating WASAPI devices...
+Enumerating DirectSound devices..
+Enumeration end
+0:WA: Default Audio Device
+1:WA: Lautsprecher (Jabra Link 370)
+2:WA: Speakers (Realtek High Definition Audio)
+3:WX: Default Audio Device
+4:WX: Lautsprecher (Jabra Link 370)
+5:WX: Speakers (Realtek High Definition Audio)
+6:DS: Primärer Soundtreiber
+7:DS: Speakers (Realtek High Definition Audio)
+8:DS: Lautsprecher (Jabra Link 370)
+Enumerating recording devices:
+0:DS: Primärer Soundaufnahmetreiber
+1:DS: Mikrofon (Jabra Link 370)
+2:DS: Microphone (Realtek High Definition Audio)
+done
+Filesystem charset (ACP=1252,FSCP=28605):
+ 00: 0000        01: 0001        02: 0002        03: 0003       
+ 04: 0004        05: 0005        06: 0006        07: 0007       
+ 08: 0008        09: 0009        0A: 000A        0B: 000B       
+ 0C: 000C        0D: 000D        0E: 000E        0F: 000F       
+ 10: 0010        11: 0011        12: 0012        13: 0013       
+ 14: 0014        15: 0015        16: 0016        17: 0017       
+ 18: 0018        19: 0019        1A: 001A        1B: 001B       
+ 1C: 001C        1D: 001D        1E: 001E        1F: 001F       
+ 20: 0020        21: 0021        22: 0022        23: 0023       
+ 24: 0024        25: 0025        26: 0026        27: 0027       
+ 28: 0028        29: 0029        2A: 002A        2B: 002B       
+ 2C: 002C        2D: 002D        2E: 002E        2F: 002F       
+ 30: 0030        31: 0031        32: 0032        33: 0033       
+ 34: 0034        35: 0035        36: 0036        37: 0037       
+ 38: 0038        39: 0039        3A: 003A        3B: 003B       
+ 3C: 003C        3D: 003D        3E: 003E        3F: 003F       
+ 40: 0040        41: 0041        42: 0042        43: 0043       
+ 44: 0044        45: 0045        46: 0046        47: 0047       
+ 48: 0048        49: 0049        4A: 004A        4B: 004B       
+ 4C: 004C        4D: 004D        4E: 004E        4F: 004F       
+ 50: 0050        51: 0051        52: 0052        53: 0053       
+ 54: 0054        55: 0055        56: 0056        57: 0057       
+ 58: 0058        59: 0059        5A: 005A        5B: 005B       
+ 5C: 005C        5D: 005D        5E: 005E        5F: 005F       
+ 60: 0060        61: 0061        62: 0062        63: 0063       
+ 64: 0064        65: 0065        66: 0066        67: 0067       
+ 68: 0068        69: 0069        6A: 006A        6B: 006B       
+ 6C: 006C        6D: 006D        6E: 006E        6F: 006F       
+ 70: 0070        71: 0071        72: 0072        73: 0073       
+ 74: 0074        75: 0075        76: 0076        77: 0077       
+ 78: 0078        79: 0079        7A: 007A        7B: 007B       
+ 7C: 007C        7D: 007D        7E: 007E        7F: 007F       
+ 80: 20AC (0080) 81: 0081        82: 201A (0082) 83: 0192 (0083)
+ 84: 201E (0084) 85: 2026 (0085) 86: 2020 (0086) 87: 2021 (0087)
+ 88: 02C6 (0088) 89: 2030 (0089) 8A: 0160 (008A) 8B: 2039 (008B)
+ 8C: 0152 (008C) 8D: 008D        8E: 017D (008E) 8F: 008F       
+ 90: 0090        91: 2018 (0091) 92: 2019 (0092) 93: 201C (0093)
+ 94: 201D (0094) 95: 2022 (0095) 96: 2013 (0096) 97: 2014 (0097)
+ 98: 02DC (0098) 99: 2122 (0099) 9A: 0161 (009A) 9B: 203A (009B)
+ 9C: 0153 (009C) 9D: 009D        9E: 017E (009E) 9F: 0178 (009F)
+ A0: 00A0        A1: 00A1        A2: 00A2        A3: 00A3       
+ A4: 00A4 (20AC) A5: 00A5        A6: 00A6 (0160) A7: 00A7       
+ A8: 00A8 (0161) A9: 00A9        AA: 00AA        AB: 00AB       
+ AC: 00AC        AD: 00AD        AE: 00AE        AF: 00AF       
+ B0: 00B0        B1: 00B1        B2: 00B2        B3: 00B3       
+ B4: 00B4 (017D) B5: 00B5        B6: 00B6        B7: 00B7       
+ B8: 00B8 (017E) B9: 00B9        BA: 00BA        BB: 00BB       
+ BC: 00BC (0152) BD: 00BD (0153) BE: 00BE (0178) BF: 00BF       
+ C0: 00C0        C1: 00C1        C2: 00C2        C3: 00C3       
+ C4: 00C4        C5: 00C5        C6: 00C6        C7: 00C7       
+ C8: 00C8        C9: 00C9        CA: 00CA        CB: 00CB       
+ CC: 00CC        CD: 00CD        CE: 00CE        CF: 00CF       
+ D0: 00D0        D1: 00D1        D2: 00D2        D3: 00D3       
+ D4: 00D4        D5: 00D5        D6: 00D6        D7: 00D7       
+ D8: 00D8        D9: 00D9        DA: 00DA        DB: 00DB       
+ DC: 00DC        DD: 00DD        DE: 00DE        DF: 00DF       
+ E0: 00E0        E1: 00E1        E2: 00E2        E3: 00E3       
+ E4: 00E4        E5: 00E5        E6: 00E6        E7: 00E7       
+ E8: 00E8        E9: 00E9        EA: 00EA        EB: 00EB       
+ EC: 00EC        ED: 00ED        EE: 00EE        EF: 00EF       
+ F0: 00F0        F1: 00F1        F2: 00F2        F3: 00F3       
+ F4: 00F4        F5: 00F5        F6: 00F6        F7: 00F7       
+ F8: 00F8        F9: 00F9        FA: 00FA        FB: 00FB       
+ FC: 00FC        FD: 00FD        FE: 00FE        FF: 00FF       
+End
+CW: No Catweasel detected
+PARAPORT: no ParaPort.dll, direct parallel port emulation disabled
+IPC: Named Pipe '\\.\pipe\WinUAE' open
+Created internal serial port shared memory
+Serial port enumeration..
+Parallel port enumeration..
+Port enumeration end
+MIDI port enumeration.. IN=0 OUT=1
+MIDI OUT: -1:'Microsoft MIDI Mapper' (1/1)
+MIDI OUT: 0:'Microsoft GS Wavetable Synth' (1/27)
+MIDI port enumeration end
+RawInput enumeration..
+RAWINPUT: found 11 devices
+HID device check:
+000000000008084B 0 0100/0010 (0/0)
+(55 00 53 00 42 00 20 00 52 00 65 00 63 00 65 00 69 00 76 00 65 00 72 00) 'USB Receiver'
+000000000008084B 00000000000004C0 [046D/C534] mouse: '\\?\HID#VID_046D&PID_C534&MI_01&Col01#7&4aeaff6&0&0000#{378de44c-56ef-11d1-bc8c-00a0c91405dd}'
+id=256 buttons=16 hw=0 rate=0
+000000000107052D 1 0051/0000 (0/12)
+(55 00 53 00 42 00 20 00 52 00 65 00 63 00 65 00 69 00 76 00 65 00 72 00) 'USB Receiver'
+000000000107052D 00000000000004AC [046D/C534] keyboard: '\\?\HID#VID_046D&PID_C534&MI_00#7&1c723c3b&0&0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}'
+type=81 sub=0 mode=1 fkeys=12 indicators=3 tkeys=173
+00000000049A0A71 2 046D/C534 (2/65280)
+RAWHID: Usage not 4 or 5 (0002)
+00000000024D0D63 2 046D/C534 (1/65280)
+RAWHID: Usage not 4 or 5 (0001)
+000000000C810C8B 2 046D/C534 (1/12)
+RAWHID: Usage not 4 or 5 (0001)
+0000000000010050 2 0000/0000 (12/1)
+RAWHID: Usage not 4 or 5 (000C)
+000000000001004C 2 0B0E/245D (1/12)
+RAWHID: Usage not 4 or 5 (0001)
+000000000001004A 2 0B0E/245D (1/65280)
+RAWHID: Usage not 4 or 5 (0001)
+0000000000010046 2 0B0E/245D (5/11)
+(4A 00 61 00 62 00 72 00 61 00 20 00 4C 00 69 00 6E 00 6B 00 20 00 33 00 37 00 30 00) 'Jabra Link 370'
+0000000000010046 00000000000004B0 [0B0E/245D] hid: '\\?\HID#VID_0B0E&PID_245D&MI_03&Col01#7&390871a8&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}'
+RAWHID: 8/11 0 'Jabra Link 370' ('\\?\HID#VID_0B0E&PID_245D&MI_03&Col01#7&390871a8&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}')
+Usage: 0005
+UsagePage: 000b
+InputReportByteLength: 3
+OutputReportByteLength: 3
+FeatureReportByteLength: 0
+NumberLinkCollectionNodes: 2
+NumberInputButtonCaps: 9
+NumberInputValueCaps: 0
+NumberInputDataIndices: 20
+NumberOutputButtonCaps: 7
+NumberOutputValueCaps: 0
+NumberOutputDataIndices: 7
+NumberFeatureButtonCaps: 0
+NumberFeatureValueCaps: 0
+NumberFeatureDataIndices: 0
+******** BUTTON_CAPS: 0 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 34
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 1
+Usage: 42
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 0
+******** BUTTON_CAPS: 1 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 34
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 1
+Usage: 151
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 1
+******** BUTTON_CAPS: 2 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 34
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 1
+Usage: 32
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 2
+******** BUTTON_CAPS: 3 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 6
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 0
+Usage: 80
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 3
+******** BUTTON_CAPS: 4 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 6
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 0
+Usage: 36
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 4
+******** BUTTON_CAPS: 5 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 6
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 0
+Usage: 33
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 5
+******** BUTTON_CAPS: 6 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 6
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 0
+Usage: 47
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 6
+******** BUTTON_CAPS: 7 ********
+UsagePage: 11
+ReportID: 2
+IsAlias: 0
+BitField: 64
+LinkCollection: 1
+LinkUsage: 6
+LinkUsagePage: 11
+IsRange: 1
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 1
+UsageMin: 176
+UsageMax: 187
+StringMin: 0
+StringMax: 0
+DesignatorMin: 0
+DesignatorMax: 0
+DataIndexMin: 7
+DataIndexMax: 18
+******** BUTTON_CAPS: 8 ********
+UsagePage: 9
+ReportID: 2
+IsAlias: 0
+BitField: 2
+LinkCollection: 0
+LinkUsage: 5
+LinkUsagePage: 11
+IsRange: 0
+IsStringRange: 0
+IsDesignatorRange: 0
+IsAbsolute: 1
+Usage: 7
+StringIndex: 0
+DesignatorIndex: 0
+DataIndex: 19
+
+0000000000010040 1 0007/0000 (0/12)
+0000000000010040 00000000000004E8 [FFFFFFFF/FFFFFFFF] keyboard: '\\?\ACPI#ATK3001#4&14a1455d&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}'
+type=7 sub=0 mode=1 fkeys=12 indicators=3 tkeys=101
+000000000001003C 0 0002/0002 (0/0)
+000000000001003C 0000000000000508 [FFFFFFFF/FFFFFFFF] mouse: '\\?\ACPI#ETD0105#4&14a1455d&0#{378de44c-56ef-11d1-bc8c-00a0c91405dd}'
+id=2 buttons=2 hw=0 rate=100
+[FFFFFFFF/FFFFFFFF] '\\?\ACPI#ETD0105#4&14a1455d&0#{378de44c-56ef-11d1-bc8c-00a0c91405dd}' (RAW Mouse) -> 'ASUS Touchpad'
+[046D/C534] '\\?\HID#VID_046D&PID_C534&MI_01&Col01#7&4aeaff6&0&0000#{378de44c-56ef-11d1-bc8c-00a0c91405dd}' (RAW Mouse (046D/C534)) -> 'HID-konforme Maus'
+[FFFFFFFF/FFFFFFFF] '\\?\ACPI#ATK3001#4&14a1455d&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}' (RAW Keyboard) -> 'Keyboard Device Filter'
+HID-konforme Maus: [046D/C534]
+00 000 'X Axis' (0, [0 - 0, 0 - 0, 0 0 0])
+01 001 'Y Axis' (1, [0 - 0, 0 - 0, 0 0 0])
+02 002 'Wheel' (2, [0 - 0, 0 - 0, 0 0 0])
+03 003 'HWheel' (3, [0 - 0, 0 - 0, 0 0 0])
+00 000 'Button 1' (0)
+01 001 'Button 2' (1)
+02 002 'Button 3' (2)
+03 003 'Button 4' (3)
+04 004 'Button 5' (4)
+05 005 'Button 6' (5)
+06 006 'Button 7' (6)
+07 007 'Button 8' (7)
+08 008 'Button 9' (8)
+09 009 'Button 10' (9)
+0A 010 'Button 11' (10)
+0B 011 'Button 12' (11)
+0C 012 'Button 13' (12)
+0D 013 'Button 14' (13)
+0E 014 'Button 15' (14)
+0F 015 'Button 16' (15)
+02 002 'Wheel [-]' (1004)
+02 002 'Wheel [+]' (1005)
+03 003 'HWheel [-]' (1006)
+03 003 'HWheel [+]' (1007)
+ASUS Touchpad: [FFFFFFFF/FFFFFFFF]
+00 000 'X Axis' (0, [0 - 0, 0 - 0, 0 0 0])
+01 001 'Y Axis' (1, [0 - 0, 0 - 0, 0 0 0])
+02 002 'Wheel' (2, [0 - 0, 0 - 0, 0 0 0])
+03 003 'HWheel' (3, [0 - 0, 0 - 0, 0 0 0])
+00 000 'Button 1' (0)
+01 001 'Button 2' (1)
+02 002 'Wheel [-]' (1004)
+02 002 'Wheel [+]' (1005)
+03 003 'HWheel [-]' (1006)
+03 003 'HWheel [+]' (1007)
+Jabra Link 370: [0B0E/245D]
+07 007 'Button 7' (14)
+20 032 'Button 32' (64)
+21 033 'Button 33' (66)
+24 036 'Button 36' (72)
+2A 042 'Button 42' (84)
+2F 047 'Button 47' (94)
+50 080 'Button 80' (160)
+97 151 'Button 151' (302)
+B0 176 'Button 176' (352)
+B1 177 'Button 177' (354)
+B2 178 'Button 178' (356)
+B3 179 'Button 179' (358)
+B4 180 'Button 180' (360)
+B5 181 'Button 181' (362)
+B6 182 'Button 182' (364)
+B7 183 'Button 183' (366)
+B8 184 'Button 184' (368)
+B9 185 'Button 185' (370)
+BA 186 'Button 186' (372)
+BB 187 'Button 187' (374)
+DirectInput enumeration.. Game controllers..
+Windowsmouse initialization..
+Catweasel joymouse initialization..
+wintab tablet initialization..
+Tablet: no wintab32.dll
+end
+M 00: 'Windows mouse' (WINMOUSE1)
+J 00: 'Jabra Link 370' (\\?\HID#VID_0B0E&PID_245D&MI_03&Col01#7&390871a8&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030})
+K 00: 'WinUAE keyboard' (NULLKEYBOARD)
+K 01: 'USB Receiver' (\\?\HID#VID_046D&PID_C534&MI_00#7&1c723c3b&0&0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd})
+K 02: 'Keyboard Device Filter' (\\?\ACPI#ATK3001#4&14a1455d&0#{884b96c3-56ef-11d1-bc8c-00a0c91405dd})
+Stored port 0/0 d=0: added 200 0  
+Stored port 0/0 d=0: added 200 0 Windows mouse WINMOUSE1
+Port0: ID 'mouse' matched
+Stored port 1/0 d=0: added 0 0  
+Stored port 1/0 d=0: added 0 0  
+Port1: ID 'kbd1' matched
+Port2: NONE
+Port3: NONE
+config reset
+load config '.\default.uae':0
+unknown config entry: 'chipmen_size=2'
+unknown config entry: 'comp_catchdetect=true'
+0 2: 0 -> 0 (WinUAE keyboard)
+KS ver = 34 (0x22)
+Stored port 0/0 d=1: added 200 0 Windows mouse WINMOUSE1
+Port0: COMBO 'Windows mouse' + 'WINMOUSE1' matched
+Stored port 1/0 d=1: added 0 0  
+Port1: ID 'kbd1' matched
+Port2: NONE
+Port3: NONE
+KS ver = 34 (0x22)
+Stored port 0/1 d=1: added 200 0 Windows mouse WINMOUSE1
+Port0: COMBO 'Windows mouse' + 'WINMOUSE1' matched
+Stored port 1/1 d=1: added 0 0  
+Port1: ID 'kbd1' matched
+Port2: NONE
+Port3: NONE
+Log (enabled): 'D:\data\amiga\Super-Star-Wars\bin\winuaelog.txt'

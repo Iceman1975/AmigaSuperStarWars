@@ -1,0 +1,143 @@
+﻿
+WinUAE 4.4.0 (2020.07.01) 64-bit (10.0.19043 [1]) 64-bit 9.6.3A09 8 10:13 0
+(c) 1995-2001 Bernd Schmidt   - Core UAE concept and implementation.
+(c) 1998-2020 Toni Wilen      - Win32 port, core code updates.
+(c) 1996-2001 Brian King      - Win32 port, Picasso96 RTG, and GUI.
+(c) 1996-1999 Mathias Ortmann - Win32 port and bsdsocket support.
+(c) 2000-2001 Bernd Meyer     - JIT engine.
+(c) 2000-2005 Bernd Roesch    - MIDI input, many fixes.
+Press F12 to show the Settings Dialog (GUI), Alt-F4 to quit.
+End+F1 changes floppy 0, End+F2 changes floppy 1, etc.
+'D:\data\amiga\Super-Star-Wars\bin\winuae.exe'
+EXE: 'D:\data\amiga\Super-Star-Wars\bin\', DATA: 'D:\data\amiga\Super-Star-Wars\bin\', PLUGIN: 'D:\data\amiga\Super-Star-Wars\bin\'
+'D:\data\amiga\Super-Star-Wars\bin\winuae.ini' enabled
+Autoconfig board list:
+END
+MMAN: Selected REAL Z3 mapping mode
+Total 16M Z3 Total 16M, HM 0M
+Autoconfig board list:
+END
+MMAN: Our special area: 0000000080000000-0000000081000000 (0x01000000 16M)
+KS ver = 34 (0x22)
+Stored port 0/2 d=0: added 200 0 Windows mouse WINMOUSE1
+Port0: COMBO 'Windows mouse' + 'WINMOUSE1' matched
+Stored port 1/2 d=0: added 0 0  
+Stored port 1/2 d=0: added 0 0  
+Port1: ID 'kbd1' matched
+Port2: NONE
+Port3: NONE
+Stored port 0/2 d=0: added 200 0 Windows mouse WINMOUSE1
+Stored port 1/2 d=0: added 0 0  
+TRAP_ENTRY = 00f01e2a
+shmget of size 524288 (512k) for kick (Kickstart ROM)
+0000000080F80000: VA 00F80000 - 01000020 80020 (512k) ok (0000000080F80000)
+shmget of size 1048576 (1024k) for chip (Chip memory)
+0000000080000000: VA 00000000 - 00100020 100020 (1024k) ok (0000000080000000)
+shmget of size 524288 (512k) for bogo (Slow memory)
+0000000080C00000: VA 00C00000 - 00C80020 80020 (512k) ok (0000000080C00000)
+ROM VP 00F80000 - 01000000 80000 (512k) UNPROT
+ROM loader.. (<none>)
+Known ROM 'KS ROM v1.3 (A500,A1000,A2000)' loaded
+ROM loader end
+memory init end
+No disk in drive 0.
+CPU cycleunit: 256 (0.500)
+1872 CPU functions
+D3D11 free start
+D3D11 freed3d start
+D3D11 freed3d end
+D3D11 free end
+Max hardware surface size: 8192x8192
+Mon 0 allocated draw temp buffer (1600*1280*32) = 00000000037D2040
+D3D11 init start. (720*568) (720*568) RTG=0 Depth=32.
+CheckFeatureSupport(DXGI_FEATURE_PRESENT_ALLOW_TEARING) = 00000000 1
+Monitor Rotation=1 BPC=8 ColorSpace=0
+R=0.628906x0.349609  G=0.348633x0.614258 B=0.154297x0.112305 WP=0.313477x0.329102
+MinL=0.500000 MaxL=270.000000 MaxFFL=270.000000
+D3D11 Device: Intel(R) HD Graphics 4000 [\\.\DISPLAY1] (0,0,1920,1080)
+D3D11CreateDevice LEVEL_11_1: 887a0004
+D3D11CreateDevice succeeded with level 11.0. Hardware accelerated.
+Switch from triple buffer to double buffer (-1).
+D3D11 Buffers=2 Flags=00000800 Format=00000057 Scaling=1 SwapEffect=4 VBI=0
+D3D11_resize 0 0 0 (0)
+D3D11 init end
+D3D11 resize do
+D3D11_resize -> none
+D3D11 resizemode start
+D3D11 freed3d start
+D3D11 freed3d end
+D3D11 resizemode 720x568, 720x568 2 00000800 FS=0
+D3D11 initd3d start
+-> -0.000000 0.000000 0.000000 -0.000000 0.000000 0.000000
+D3D11 initd3d end
+D3D11 720x568 main texture allocated
+POS (0 0 720 568) - (0 0 720 568)[720,568] (0 0) S=720*568 B=720*568
+0 0 1 1
+-> -360.000000 284.000000 360.000000 -284.000000 1.000000 1.000000
+D3D11 resizemode end
+D3D11 resize exit
+D3D11 752x576 main texture allocated
+POS (0 0 720 568) - (16 4 736 572)[720,568] (0 0) S=720*568 B=752*576
+0 0 1 1
+-> -376.000000 288.000000 376.000000 -288.000000 1.000000 1.000000
+Buffer 0 size (752*576) Native
+ActiveHeight: 1080 TotalHeight: 1102 VFreq=138000000/2300976=59.97Hz HFreq=66091/1=66.091KHz
+Stored port 0/2 d=0: added 200 0 Windows mouse WINMOUSE1
+Stored port 1/2 d=0: added 0 0  
+CPU cycleunit: 256 (0.500)
+Building CPU, 44274 opcodes (0 1 1)
+JIT: &countdown =  0000000014E976DC
+JIT: &build_comp = 0000000010F74400
+JIT: <JIT compiler> : Max CPUID level=13 Processor is GenuineIntel [PentiumPro]
+JIT: Installing vectored exception handler
+JIT: <JIT compiler> : building compiler function tables
+JIT: <JIT compiler> : supposedly 42047 compileable opcodes!
+CPU=68000, FPU=0, MMU=0, JIT=0. prefetch 24-bit
+clipboard: reset (00000000)
+memory init end
+Reset at 00000000. Chipset mask = 00000000
+00000000    2048K/4 =     512K ID F16 Kickstart ROM (F6290043)
+00200000    8192K/0 =    8192K -- F16 <none>
+00A00000    2048K/0 =    2048K -- CIA CIA
+00C00000     512K/1 =     512K ID F16 Slow memory
+00C80000    1024K/0 =    1024K -- F16 Custom chipset
+00D80000     256K/0 =     256K -- C16 <none>
+00DC0000      64K/0 =      64K -- C16 Battery backed up clock (none)
+00DD0000      64K/0 =      64K -- C16 <none>
+00DE0000     128K/0 =     128K -- C16 Custom chipset
+00E00000     512K/1 =     512K ID F16 Kickstart ROM (F6290043)
+00E80000      64K/0 =      64K -- F16 Autoconfig Z2
+00E90000     960K/0 =     960K -- F16 <none>
+00F80000     512K/1 =     512K ID F16 Kickstart ROM (F6290043)
+PAL mode V=50.0804Hz H=15625.0879Hz (227x312+0) IDX=10 (PAL) D=0 RTG=0/0
+D3D11 752x574 main texture allocated
+POS (0 0 720 568) - (16 3 736 571)[720,568] (0 0) S=720*568 B=752*574
+0 0 1 1
+-> -376.000000 287.000000 376.000000 -287.000000 1.000000 1.000000
+Buffer 0 size (752*574) Native
+RTGFREQ: 312*50.0804 = 15625.0879 / 50.1 = 312
+D3D11 Shader and extra textures restored
+Autoconfig board list:
+END
+ROM VP 00F80000 - 01000000 80000 (512k) UNPROT
+hardreset, memory cleared
+WASAPI: GetCurrentSharedModeEnginePeriod() CH=2 FREQ=48000 BITS=32 CurrentPeriodInFrames=480
+WASAPI: GetSharedModeEnginePeriod() DPIF=480 FPIF=480 MinPIF=480 MaxPIF=480
+WASAPI: IsOffloadCapable() returned 0 00000000
+WASAPI: '{0.0.0.00000000}.{f99ea898-a322-4f36-a12c-05a1745c8291}'
+WASAPI: Shared Pull CH=2 FREQ=48000 BUF=1366 (2732)
+SNDRATE 312.0*227.0*50.080410=3546894.958099
+2022-01-09 12:25:45
+45-844 [57 061=148]: Illegal instruction: 4e7b at 00FC0564 -> 00FC0582
+45-849 [57 010=207]: SERIAL: period=372, baud=9600, hsyncs=14, bits=8, PC=fc2234
+46-818 [106 000-000]: SNDRATE 313.0*227.0*49.920410=3546895.062012
+46-818 [106 000-000]: PAL mode V=49.9204Hz H=15625.0879Hz (227x312+1) IDX=10 (PAL) D=0 RTG=0/0
+59-891 [751 000-000]: ROM VP 00F80000 - 01000000 80000 (512k) UNPROT
+59-903 [751 000-000]: D3D11 free start
+59-904 [751 000-000]: D3D11 freed3d start
+59-904 [751 000-000]: D3D11 freed3d end
+59-913 [751 000-000]: D3D11 free end
+59-942 [751 000-000]: mapped_free direct Slow memory
+59-942 [751 000-000]: mapped_free direct Kickstart ROM
+59-943 [751 000-000]: mapped_free direct Chip memory
+59-943 [751 000-000]: mapped_free nondirect UAE Boot ROM
