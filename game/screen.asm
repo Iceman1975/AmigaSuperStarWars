@@ -1,32 +1,50 @@
+levelPosX:
+  dc.w      0
 
-
-screen_swap:
-  lea.l      RENDER,a0
-  lea.l      SHOW,a5
-  move.l     (a0),d0                      ;RENDER-> d0
-  move.l     (a5),(a0)                    ;SHOW->RENDER
-  move.l     d0,(a5)                      ;d0->SHOW
-  rts
+virtualScreenPosX:
+  dc.w      80
 	
+virtualscreenPosY:
+  dc.w      100                                                         ;virtualscreen_h-screenheight-1
+	
+paraClouds0X:
+  dc.w      0
+
+paraClouds1X:
+  dc.w      0
+
+paraMountainX:
+  dc.w      0
+	
+paraScreenPosX:
+  dc.w      0
+	
+paraScreenPosY:
+  dc.w      0
+
+
 screen_scroll:	
-  lea.l      SHOW,a0
-  move.l     (a0),d0                      ;SHOW-> d0
+             ;lea.l      SHOW,a0
+  move.l    trenchpointer,d0
+ ; move.l     (a0),d0                                                     ;SHOW-> d0
 	;do scrolling
-  lea.l      virtualscreenPosY,a5         ;Y Pos
-  move.w     (a5),d1
-  mulu.w     #3*(virtualscreen_w/8),d1
-  add.l      d1,d0
+  lea.l     virtualscreenPosY,a5                                        ;Y Pos
+  move.w    (a5),d1
+  mulu.w    #3*(trenchscreen_w/8),d1
+  add.l     d1,d0
 	
-  lea.l      virtualScreenPosX,a5         ;X Pos
-  move       (a5),d2                      ; X Position of screen 
-  add        #$f,d2                       ; d2 = X+15
-  moveq      #-1,d3	 
-  sub.b      d2,d3                        ; d3 = -1-(X+15)
-  and.b      #$f,d3                       ; d3 = (-1-(X+15))&15 = BPLC0N1
-	
-  move.b     d3,d4
-  lsl.b      #4,d4
-  or.b       d4,d4
+  lea.l     virtualScreenPosX,a5                                        ;X Pos
+  move      (a5),d2                                                     ; X Position of screen 
+  add       #$f,d2                                                      ; d2 = X+15
+  moveq     #-1,d3	 
+  sub.b     d2,d3                                                       ; d3 = -1-(X+15)
+  and.b     #$f,d3                                                      ; d3 = (-1-(X+15))&15 = BPLC0N1
+
+
+;remove?:	
+  move.b    d3,d4
+  lsl.b     #4,d4
+  or.b      d4,d4
 
 ; fix flickering
 ;  cmp.b      #$f,d3
@@ -34,390 +52,263 @@ screen_scroll:
  ; move.b     #$0,d3
 	
 s_correction:
-  move.b     d3,scrollH+3
+  lsl.b     #4,d3
+
+  move.b    d3,scrollH+3
 	
 ; fix done 
 
 ;	lsl.b #4,d3
 ;	or.b d3,scrollH+3 	; Verschiebung fuer ungerade Planes  (background)
 	
-  lsr        #4,d2                        ; d2 = (X-15)/16 = zu addierende Words
-  add        d2,d2                        ; d2 = zu addierende Bytes fuer X
-  add        d2,d0                        ; d2 = zu addierende Bytes fuer X+Y
+  lsr       #4,d2                                                       ; d2 = (X-15)/16 = zu addierende Words
+  add       d2,d2                                                       ; d2 = zu addierende Bytes fuer X
+  add       d2,d0                                                       ; d2 = zu addierende Bytes fuer X+Y
 	;end scrolling
 	
 	
-  lea        copperMainScreen(pc),a0
-  moveq      #2,d7 
+  lea       copperTrenchScreen,a0
+  moveq     #2,d7 
 ss1:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0 
-  add.l      #virtualscreen_w/8,d0 
-  addq.l     #8,a0 
-  dbf        d7,ss1
+  move      d0,6(a0) 
+  swap      d0 
+  move      d0,2(a0) 
+  swap      d0 
+  add.l     #trenchscreen_w/8,d0 
+  addq.l    #8,a0 
+  dbf       d7,ss1
 	
 	;done not set para screen (d3=foreground playfield)
-  bsr        ss2_moveparascreen
 	
-  rts
-	
-
-ss2_moveparascreen:
-;cloudsA
-  lea.l      cloud1(pc),a0	
-  adda.l     #4,a0                        ;skip copper wait instruction
-  lea        cloud1_0,a1
-  move.l     a1,d0
-  moveq      #2,d7                        ; number of bitplanes -1
-	
-	
-  lea.l      paraClouds0X(pc),a3
-  moveq      #0,d5                        ; clean up
-  move.w     (a3),d5                      ; para x pos
-  lsl.w      #1,d5                        ; load offset in bytes (*2)
-  lea.l      paraOffsetClouds0,a2         ; load offsets 
-  adda.l     d5,a2                        ; pointer to correct offset	(column)
-  moveq      #0,d4                        ; clean up
-  move.b     (a2),d4                      ; load offset
-  move.b     1(a2),d5                     ;d5 reuse for vertical pos
-  lsl.b      #4,d5
-  and.b      #$000F,d3                    ;delete hi bits
-  or.b       d5,d3                        ;add new hi bits	
-  add.l      d4,d0                        ;y offset
-	
-sscA_para:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0
-  add.l      #parabitplanesize_a,d0 
-  addq.l     #8,a0 
-  dbf        d7,sscA_para	
-  move.b     d3,3(a0)
-	
-	
-	
-;cloudsB
-  lea.l      cloud2(pc),a0	
-  adda.l     #4,a0                        ;skip copper wait instruction
-  lea        cloud2_0,a1
-  move.l     a1,d0
-  moveq      #2,d7                        ; number of bitplanes -1
-	
-  lea.l      paraClouds1X(pc),a3
-  moveq      #0,d5                        ; clean up
-  move.w     (a3),d5                      ; para x pos
-  lsl.w      #1,d5                        ; load offset in bytes (*2)
-  lea.l      paraOffsetClouds1,a2         ; load offsets 
-  adda.l     d5,a2                        ; pointer to correct offset	(column)
-  moveq      #0,d4                        ; clean up
-  move.b     (a2),d4                      ; load offset
-  move.b     1(a2),d5                     ;d5 reuse for vertical pos
-  lsl.b      #4,d5
-  and.b      #$000F,d3                    ;delete hi bits
-  or.b       d5,d3                        ;add new hi bits	
-  add.l      d4,d0                        ;y offset
-	
-sscB_para:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0
-  add.l      #parabitplanesize_b,d0 
-  addq.l     #8,a0 
-  dbf        d7,sscB_para	
-  move.b     d3,3(a0)
-	
-;mountain
-  lea.l      mountain(pc),a0	
-  adda.l     #4,a0                        ;skip copper wait instruction
-  lea        mountain_0,a1
-  move.l     a1,d0
-  moveq      #2,d7                        ; number of bitplanes -1
-	
-  lea.l      paraMountainX(pc),a3
-  moveq      #0,d5                        ; clean up
-  move.w     (a3),d5                      ; para x pos
-  lsl.w      #1,d5                        ; load offset in bytes (*2)
-  lea.l      paraOffsetMountain,a2        ; load offsets 
-  adda.l     d5,a2                        ; pointer to correct offset	(column)
-  moveq      #0,d4                        ; clean up
-  move.b     (a2),d4                      ; load offset
-  move.b     1(a2),d5                     ;d5 reuse for vertical pos
-  lsl.b      #4,d5
-  and.b      #$000F,d3                    ;delete hi bits
-  or.b       d5,d3                        ;add new hi bits	
-  add.l      d4,d0                        ;y offset
-	
-sscM_para:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0
-  add.l      #parabitplanesize_m,d0 
-  addq.l     #8,a0 
-  dbf        d7,sscM_para	
-  move.b     d3,3(a0)
-
-;landscape
-  lea.l      parascroll(pc),a0	
-  adda.l     #4,a0                        ;skip copper wait instruction
-	
-  lea.l      paraScreenPosX(pc),a3
-  moveq      #0,d5                        ; clean up
-  move.w     (a3),d5                      ; para x pos
-  lsl.w      #1,d5                        ; load offset in bytes (*2)
-	
-  lea.l      paraOffset,a2                ; load offsets 
-	
-  adda.l     d5,a2                        ; pointer to correct offset	(column)
-  moveq      #0,d4                        ; clean up
-  move.b     (a2),d4                      ; load offset
-	
-  move.b     1(a2),d5                     ;d5 reuse for vertical pos
-  lsl.b      #4,d5
-  and.b      #$000F,d3                    ;delete hi bits
-	
-  or.b       d5,d3                        ;add new hi bits
-	
-	
-  lea        para0,a1
-  move.l     a1,d0
-  add.l      d4,d0                        ; add y offset
-	
-  moveq      #2,d7                        ; number of bitplanes -1
-  moveq      #99,d6                       ; number of para lines-1
-	
-
-ss3_para:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0
-  add.l      #parabitplanesize_l,d0 
-  addq.l     #8,a0 
-  dbf        d7,ss3_para
-	
-  move.b     d3,3(a0)                     ; set vertical offset (here: only foreground playfield so far)
-	
-  moveq      #2,d7                        ; number of para lines-1
-  suba.l     #3*8,a0                      ; correct pointer to copper list
-  adda.l     #paracopperlinesize,a0       ; next line
-
-  sub.l      #3*parabitplanesize_l,d0     ; correct pointer to para bitplane
-  add.l      #parallaxscreen_w/8,d0       ; next line
-	
-	;Y
-  sub.l      d4,d0                        ; sub old offset
-  adda.l     #320,a2                      ; point to new offset (next offset line)
-  move.b     (a2),d4                      ; load new offset
-  add.l      d4,d0
-	
-	;X 
-  move.b     1(a2),d5                     ;d5 reuse for vertical pos	
-  lsl.b      #4,d5
-  and.b      #$000F,d3                    ;delete hi bits
-  or.b       d5,d3                        ;add new hi bits
-	
-  dbf        d6,ss3_para
   rts
 
 screen_init:
-  moveq      #0,d0
-  moveq      #0,d1
-  moveq      #20,d3                       ; virtualscreen_w/16
 
-i_1:	
-  lea.l      level1,a0
-  lea.l      SCREEN0,a1
-  lea.l      SCREEN0,a2
-  lea.l      SCREEN0,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
-  lea.l      level1,a0
-  lea.l      SCREEN1,a1
-  lea.l      SCREEN1,a2
-  lea.l      SCREEN1,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
-  lea.l      level1,a0
-  lea.l      SCREENR,a1
-  lea.l      SCREENR,a2
-  lea.l      SCREENR,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
+  ;lea.l      trench,a0
+  move.l    trenchpointer,d0
+  lea       copperTrenchScreen,a0
+  moveq     #2,d7 
+ss2:
+  move      d0,6(a0) 
+  swap      d0 
+  move      d0,2(a0) 
+  swap      d0 
+  add.l     #trenchscreen_w/8,d0 
+  addq.l    #8,a0 
+  dbf       d7,ss2
 	
-  add.w      #2,d0                        ;next screen column
-  add.w      #26*2,d1                     ;next level column
+  rts
 
-  dbf        d3,i_1
+screen_init_cockpit:
+
+  lea.l     cockpit_plus,a0
+  move.l    a0,d0
+  lea       copperMainScreen,a0
+  moveq     #2,d7 
+ss3:
+  move      d0,6(a0) 
+  swap      d0 
+  move      d0,2(a0) 
+  swap      d0 
+  add.l     #virtualscreen_w/8,d0 
+  addq.l    #8,a0 
+  dbf       d7,ss3
+	
   rts
 
 
-screen_update:
-	;find level map tile column
-  lea.l      levelPosX,a0
-  moveq      #0,d1
-  move.w     #screenwidth+16,d1           ;take first level column outside screen 
-  add.w      (a0),d1
-  lsr.w      #4,d1                        ; levelPosX/16 -> offset
-  mulu.w     #4*13,d1                     ; offset(long words=4 byte) * level column size
-	
-  lea.l      virtualScreenPosX,a0         ; find position/column on virtual screen
-  moveq      #0,d0
-  move.w     (a0),d0
-  add.w      #screenwidth+16,d0
-	;cmp.w  #virtualscreen_w,d0	; still in virtualScreen?
-	;ble	   up1					; yes
-	;sub.w  #virtualscreen_w,d0	; no -> go to start pos of virtualScreen
-	
-up1:
-  move.w     d0,d2                        ;only every 16 pixels
-  and.w      #$000f,d2
-  cmp.w      #0,d2
-  bne        up3_updateSkip               ; skip it
-  lsr.w      #3,d0                        ;offset in bytes; order bytes? aber nur alle 16 pixel bzw. alle words
-	
-  lea.l      level1,a0
-  lea.l      SCREEN0,a1
-  lea.l      SCREEN0,a2
-  lea.l      SCREEN0,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
-  lea.l      level1,a0                    ;TODO: copy by blitter
-  lea.l      SCREEN1,a1
-  lea.l      SCREEN1,a2
-  lea.l      SCREEN1,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
-  lea.l      level1,a0                    ;TODO: copy by blitter
-  lea.l      SCREENR,a1
-  lea.l      SCREENR,a2
-  lea.l      SCREENR,a3
-  adda.l     d1,a0
-  adda.l     d0,a1
-  adda.l     d0,a2
-  adda.l     d0,a3
-  bsr        p_addTilesToScreen
-	
-up3_updateSkip:	
+screen_nextTrenchFrame:
+  move.w    trenchframecounter,d0
+  addq      #1,d0
+  move.w    d0,trenchframecounter  
+  cmp.w     #5,d0
+  beq       screen_btf_change   
+  bra       s_nextTF_done 
+
+screen_btf_change:
+  move.l    trenchpointer_render,trenchpointer_repair
+  move.l    trenchpointer,trenchpointer_render
+  move.w    0,trenchframecounter
+  lea.l     trenchpointer,a0
+  move.l    #trenchscreensize,d0
+  add.l     d0,(a0)
+  lea.l     trenchend,a1
+  move.l    a1,d1
+  cmp.l     (a0),d1
+  bne.s     s_nextTF_done
+  lea.l     trench,a1
+  move.l    a1,(a0)
+
+s_nextTF_done:
   rts
-	
+
+trenchpointer_repair:
+  dc.l      trench
+
+trenchpointer_render:
+  dc.l      trench+trenchscreensize
+
+trenchpointer:
+  dc.l      trench+(2*trenchscreensize)
 
 
 
-p_addTilesToScreen:
-  adda.l     #(virtualscreen_w/8),a2
-  adda.l     #(virtualscreen_w/8)*2,a3
-	
-	
-		
-p_getTile:
-  move.l     (a0)+,d5                     ; read tiles offset
-  cmp.l      #-1,d5                       ; empty tile?
-  bne        p_loadtile                   ; not please draw tile
-	
-  bra        p_loademptytile              ; ok draw empty tile
-	;adda.l #virtualscreen_w/8*16,a1
-	;adda.l #virtualscreen_w/8*16,a2
-	;adda.l #virtualscreen_w/8*16,a3	
-  bra        p_getTile                    ; get next		
 
-p_loadtile:	
-  lea.l      tiles,a5                     ; load tile address
-  adda.l     d5,a5                        ; add offset
-  moveq      #31,d7
-	
-p_copyTile:
-  move.w     (a5),(a1)                    ; first line
-  move.w     $2(a5),(a2)                  ; second line
-  move.w     $4(a5),(a3)                  ; third line^
+trenchframecounter:
+  dc.w      0
 
-  adda.l     #3*(virtualscreen_w/8),a1
-  adda.l     #3*(virtualscreen_w/8),a2
-  adda.l     #3*(virtualscreen_w/8),a3
-  adda.l     #6,a5                        ; 2 byte* 3 bitmaps
-  dbf        d7,p_copyTile
-  cmp.l      #-2,(a0)
-  bne        p_getTile
+
+
+move_cockpit:
+  move.w    virtualScreenPosX,d0
+  
+
+  lea.l     joy1_left,a0
+  tst.b     (a0)
+  beq       mc_noLeft
+  cmp.w     0,d0 
+  beq       mc_noLeft
+  sub.w     #4,virtualScreenPosX     
+mc_noLeft:
+  lea.l     joy1_right,a0
+  tst.b     (a0)
+  beq       mc_noRigth
+  cmp.w     #trenchscreen_w-virtualscreen_w-8,d0
+  bge       mc_noRigth 
+  add.w     #4,virtualScreenPosX 
+mc_noRigth:
+  move.w    virtualscreenPosY,d0
+  lea.l     joy1_down,a0
+  tst.b     (a0)
+  beq       mc_noDown
+  cmp.w     0,d0 
+  beq       mc_noDown
+  sub.w     #4,virtualscreenPosY 
+mc_noDown:
+  lea.l     joy1_up,a0
+  tst.b     (a0)
+  beq       mc_noUp
+  cmp.w     #trenchscreen_h-virtualscreen_h,d0
+  bge       mc_noUp 
+  add.w     #4,virtualscreenPosY 
+mc_noUp:
   rts
-	
-p_loademptytile:	
-	;moveq  #0,d4	; empty 
-  moveq      #31,d7
-	
-p_copyemptyTile:
-  move.w     #0,(a1)
-  move.w     #0,(a2)
-  move.w     #0,(a3)
-  adda.l     #3*(virtualscreen_w/8),a1
-  adda.l     #3*(virtualscreen_w/8),a2
-  adda.l     #3*(virtualscreen_w/8),a3
-  dbf        d7,p_copyemptyTile
-  cmp.l      #-2,(a0)
-  bne        p_getTile
-  rts
-	
-	
-screen_swapAndCopyCopper
-	
-  lea.l      COPPER_BUF,a0
-  lea.l      COPPER_SHOW,a1
-  move.l     (a0),d0                      ;BUF-> d0
-  move.l     (a1),(a0)                    ;SHOW->BUF
-  move.l     d0,(a1)                      ;d0->SHOW
-	
-							; put copper address into a1
-  move.l     (a1),$dff080                 ; COP1LCH (also sets COP1LCL)
 
-  movea.l    (a0),a1 BUF to a1
+copper:
+             ;dc.w       BPLCON3, $0c00 
+             
+
+  dc.w      DIWSTRT,$3081
+  ;dc.w       DIWSTOP,$08c1
+  dc.w      DIWSTOP,$08b0
+  dc.w      DDFSTRT,$30
+  ;dc.w       DDFSTOP,$d0 
+  dc.w      DDFSTOP,$c0 
+             
+  dc.w      BPLCON0, $6600
+
+  dc.w      BPLCON2, $0024
+             
+scrollH:
+  dc.w      BPLCON1, $000f
+	
+
+
+  dc.w      COLOR00, $0000
+  dc.w      COLOR01, $0001
+  dc.w      COLOR02, $088d
+  dc.w      COLOR03, $00c0
+  dc.w      COLOR04, $0ff5
+  dc.w      COLOR05, $0b00
+  dc.w      COLOR06, $0fb0
+  dc.w      COLOR07, $0f00
+	
+	;colors trench
+
+       	
+  dc.w      COLOR08, $0000
+  dc.w      COLOR09, $0234
+  dc.w      COLOR10, $089a
+  dc.w      COLOR11, $0567
+  dc.w      COLOR12, $0789
+  dc.w      COLOR13, $0bcd
+  dc.w      COLOR14, $0678
+  dc.w      COLOR15, $0345
+	
+  dc.w      COLOR16, $0048
+  dc.w      COLOR17, $0a25
+  dc.w      COLOR18, $0e35
+  dc.w      COLOR19, $0816
+  dc.w      COLOR20, $0616
+  dc.w      COLOR21, $0e58
+  dc.w      COLOR22, $0f6b
+  dc.w      COLOR23, $0fdf
+  dc.w      COLOR24, $0fff
+  dc.w      COLOR25, $0fcf
+  dc.w      COLOR26, $0faf
+  dc.w      COLOR27, $0fbf
+  dc.w      COLOR28, $0fff
+  dc.w      COLOR29, $0e22
+  dc.w      COLOR30, $0f8e
+  dc.w      COLOR31, $0c24
+	
+
+
+
+copperMainScreen:
+  dc.w      BPL1PTH,0
+  dc.w      BPL1PTL,0
+  dc.w      BPL3PTH,0
+  dc.w      BPL3PTL,0
+  dc.w      BPL5PTH,0
+  dc.w      BPL5PTL,0
+
+copperTrenchScreen:
+  dc.w      BPL2PTH,0
+  dc.w      BPL2PTL,0
+  dc.w      BPL4PTH,0
+  dc.w      BPL4PTL,0
+  dc.w      BPL6PTH,0
+  dc.w      BPL6PTL,0
+   
+
+;  dc.w       BPL1MOD,(virtualscreen_w/8)-40-2+(2*(virtualscreen_w/8)) 
+;  dc.w       BPL2MOD,(trenchscreen_w/8)-40-2+(2*(trenchscreen_w/8))  	
+
+  dc.w      BPL1MOD,(virtualscreen_w/8)-40+2+(2*(virtualscreen_w/8)) 
+  dc.w      BPL2MOD,(trenchscreen_w/8)-40+2+(2*(trenchscreen_w/8))  	
+
+sp0:	
+  dc.w      $0120,$0000                                                 ; SPR0PTH
+  dc.w      $0122,$0000                                                 ; SPR0PTL
+sp1:
+  dc.w      $0124,$0000                                                 ; SPR1PTH
+  dc.w      $0126,$0000                                                 ; SPR1PTL
+sp2:	
+  dc.w      $0128,$0000                                                 ; SPR2PTH
+  dc.w      $012a,$0000                                                 ; SPR2PTL
+sp3:	
+  dc.w      $012c,$0000                                                 ; SPR3PTH
+  dc.w      $012e,$0000                                                 ; SPR3PTL
+	
+  dc.w      $0130,$0000                                                 ; SPR4PTH
+  dc.w      $0132,$0000                                                 ; SPR4PTL
+  dc.w      $0134,$0000                                                 ; SPR5PTH
+  dc.w      $0136,$0000                                                 ; SPR5PTL
+  dc.w      $0138,$0000                                                 ; SPR6PTH
+  dc.w      $013a,$0000                                                 ; SPR6PTL
+  dc.w      $013c,$0000                                                 ; SPR7PTH
+  dc.w      $013e,$0000                                                 ; SPR7PTL
+	
+  dc.w      $104,%0000000000100000                                      ; sprites prio
+	
+	;DC.W 	$5009,$FFFE           ; Wait for vpos >= 0x3F and hpos >= 0x80
+	
+  dc.w      $ffdf,$fffe                                                 ; wait($df,$ff) enables waits > $ff vertical
+  dc.w      $2c01,$fffe                                                 ; wait($01,$12c) - $2c is $12c
+  dc.w      $0100,$0200                                                 ; BPLCON0 unset bitplanes, enable color burst
+						; needed to support older PAL chips
+  dc.w      $ffff,$fffe                                                 ; end of copper
 
 	
-  lea.l      copper,a0
-	
-  lea.l      COPPER_BUF,a1
-  move.l     (a1),a1
-		
-coCo:
-  move.l     (a0)+,(a1)+
-  cmp.l      #$fffffffe,(a0)
-  bne        coCo
-  move.l     (a0)+,(a1)+                  ;last longword
-	
-	;lea.l COPPER_BUF,a1
-	;move.l  (a1),$dff080
-  rts
-	
-screen_initFooter:
-  lea.l      copper_footer(pc),a0	
-  lea        footer_0,a1
-  suba.l     #2,a1                        ; correction of x position
-  move.l     a1,d0
-  moveq      #4,d7                        ; number of bitplanes -1
-	
-ssc_footer:
-  move       d0,6(a0) 
-  swap       d0 
-  move       d0,2(a0) 
-  swap       d0
-  add.l      #((320/8)*40),d0 
-  addq.l     #8,a0 
-  dbf        d7,ssc_footer	
-  rts
+
