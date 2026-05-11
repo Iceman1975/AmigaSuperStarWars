@@ -1675,46 +1675,63 @@ tie10:
   dc.w    %0001111000000000, %0000000000000000, %0000000000000000, %0000000001111000
   dc.w    %0001111000000000, %0000000000000000, %0000000000000000, %0000000001111000
 
+
 ties:
 
   dc.l    tie2                                                                          ; pointer to bitmap
   dc.w    48                                                                            ; add to get mask pointer
   dc.w    44                                                                            ; blitter modulo
   dc.w    1538                                                                          ; blitter size
+  dc.w    8,4                                                                           ; width/2, height/2
+
   dc.l    tie3                                                                          ; pointer to bitmap
   dc.w    72                                                                            ; add to get mask pointer
   dc.w    44                                                                            ; blitter modulo
   dc.w    2306                                                                          ; blitter size
+  dc.w    8,6                                                                           ; width/2, height/2
+
   dc.l    tie4                                                                          ; pointer to bitmap
   dc.w    90                                                                            ; add to get mask pointer
   dc.w    44                                                                            ; blitter modulo
   dc.w    2882                                                                          ; blitter size
+  dc.w    8,7                                                                           ; width/2, height/2
+
   dc.l    tie5                                                                          ; pointer to bitmap
   dc.w    228                                                                           ; add to get mask pointer
   dc.w    42                                                                            ; blitter modulo
   dc.w    3651                                                                          ; blitter size
-tiesXX:
+  dc.w    16,9                                                                          ; width/2, height/2
+
   dc.l    tie6                                                                          ; pointer to bitmap
   dc.w    276                                                                           ; add to get mask pointer
   dc.w    42                                                                            ; blitter modulo
   dc.w    4419                                                                          ; blitter size
+  dc.w    16,11                                                                         ; width/2, height/2
+
   dc.l    tie7                                                                          ; pointer to bitmap
   dc.w    372                                                                           ; add to get mask pointer
   dc.w    42                                                                            ; blitter modulo
   dc.w    5955                                                                          ; blitter size
+  dc.w    16,15                                                                         ; width/2, height/2
+
   dc.l    tie8                                                                          ; pointer to bitmap
   dc.w    828                                                                           ; add to get mask pointer
   dc.w    40                                                                            ; blitter modulo
   dc.w    8836                                                                          ; blitter size
+  dc.w    24,23                                                                         ; width/2, height/2
+
   dc.l    tie9                                                                          ; pointer to bitmap
   dc.w    1344                                                                          ; add to get mask pointer
   dc.w    38                                                                            ; blitter modulo
   dc.w    10757                                                                         ; blitter size
+  dc.w    32,28                                                                         ; width/2, height/2
 tiesX:
   dc.l    tie10                                                                         ; pointer to bitmap
   dc.w    1488                                                                          ; add to get mask pointer
   dc.w    38                                                                            ; blitter modulo
   dc.w    11909                                                                         ; blitter size
+  dc.w    32,31                                                                         ; width/2, height/2
+
 
 
 repair_list 

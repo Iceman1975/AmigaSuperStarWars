@@ -77,30 +77,16 @@ wait2:             ; wait until at beam line 1
 
 
 	
-	
-;  lea        enemy_active_list,a1
-;  move.l     6(a1),d0
-;  lea.l      tiesX,a0
-;  cmp.l      a0,d0
-;  beq.s      .s
-;  add.l      #10,6(a1)
-;  bra.s      .ss
-;.s:
-;  lea.l      ties,a0
- ; move.l     a0,6(a1)
-;.ss:
-
-  bsr        screen_init
-  bsr        screen_scroll
+  
   bsr        screen_nextTrenchFrame
+  bsr        screen_scroll
 
- ; move.w     trenchframecounter,d0
-  ;tst.w      d0
-  ;bne.s      .noFrameChange
+  bsr        enemies_move
+
   bsr        enemies_restoreEnemyAreas
   bsr        enemies_saveEnemyAreas
   bsr        enemies_drawEnemies
-;.noFrameChange
+
   
   bsr        sprites_createBullet
   bsr        sprites_moveBullet

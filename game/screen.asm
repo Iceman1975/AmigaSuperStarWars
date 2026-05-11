@@ -25,7 +25,7 @@ paraScreenPosY:
 
 screen_scroll:	
              ;lea.l      SHOW,a0
-  move.l    trenchpointer,d0
+  move.l    trenchpointer_render,d0
  ; move.l     (a0),d0                                                     ;SHOW-> d0
 	;do scrolling
   lea.l     virtualscreenPosY,a5                                        ;Y Pos
@@ -126,10 +126,10 @@ screen_nextTrenchFrame:
   bra       s_nextTF_done 
 
 screen_btf_change:
-  move.l    trenchpointer_render,trenchpointer_repair
-  move.l    trenchpointer,trenchpointer_render
+  move.l    trenchpointer_render,trenchpointer
+
   move.w    0,trenchframecounter
-  lea.l     trenchpointer,a0
+  lea.l     trenchpointer_render,a0
   move.l    #trenchscreensize,d0
   add.l     d0,(a0)
   lea.l     trenchend,a1
@@ -142,8 +142,9 @@ screen_btf_change:
 s_nextTF_done:
   rts
 
-trenchpointer_repair:
-  dc.l      trench
+
+
+
 
 trenchpointer_render:
   dc.l      trench+trenchscreensize

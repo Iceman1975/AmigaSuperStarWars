@@ -8,11 +8,11 @@ ENEMY_HEIGHT                                 = 22
 ENEMY_MAX_ON_SCREEN                          = 3
 
                     ;status=0 inactive, 1=active, dying;    x;  y;  pointer to enemyList(longword)
-enemy_active_list  dc.w      1,100,100
+enemy_active_list  dc.w      1,188,163
                    dc.l      tiesX
 
                    dc.w      0,200,100
-                   dc.l      tiesXX
+                   dc.l      tiesX
 
                    ds.w      ENEMY_AVTIVE_LIST_ENTRY_SIZE*ENEMY_MAX_ON_SCREEN
                    dc.w      -1
@@ -106,29 +106,20 @@ e_save_waitblit_4
 
                    move      6(a5),$dff062                                       ;B      modulo
                    ;move      6(a5),$dff066                                       ;D      modulo
-                   move      -2,$dff066                                          ;D     no  modulo
-
+                   ;move      #-2,$dff066                                         ;D     no  modulo
+                   move      #0,$dff066                                          ;D     no  modulo
                     
                    move.w    $2(a4),d0                                           ;x
+                   sub.w     10(a5),d0                                           ; sub width/2
                    move.w    $4(a4),d1                                           ;y 
-
-
+                   sub.w     12(a5),d1                                           ;sub height/2
+ 
                    mulu      #trenchscreenlineSize,d1	
                    add.l     d1,a0
                    ;add.l     d1,a1
                    lsr       #3,d0
                    add       d0,a0
                    ;add       d0,a1
-
-
-
-	
-                   move.l    #%00000101110011000000000000000000,$dff040
-                   
-                   move.l    a0,$dff04c                                          ;B
-                   move.l    a1,$dff054                                          ;D
-                    ;move      #((3*25*64)+((32+16)/16)),$dff058                   ; TODO use Blittsize here
-                   move      8(a5),$dff058                                       ; blitsize -> copy
 
                    ; store for restore
                    move.w    #1,(a3)
@@ -137,6 +128,17 @@ e_save_waitblit_4
                    move.l    a1,6(a3)
                    move.w    8(a5),10(a3)
                    move.w    6(a5),12(a3)
+
+
+                   ;blit
+                   move.l    #%00000101110011000000000000000000,$dff040
+                   
+                   move.l    a0,$dff04c                                          ;B
+                   move.l    a1,$dff054                                          ;D
+                    ;move      #((3*25*64)+((32+16)/16)),$dff058                   ; TODO use Blittsize here
+                   move      8(a5),$dff058                                       ; blitsize -> copy
+
+
                    
 		
 e_save_next
@@ -187,15 +189,11 @@ e_draw_nextenemy:
                    move.l    trenchpointer_render,a2 
                    moveq     #0,d0
                    moveq     #0,d1
-                   move      $2(a4),d0                                           ; x POS
-                   move      $4(a4),d1                                           ; y POS
 
-                    ; hack to test repair function
-                   ;move      #220,2(a4)
-
-                    ; virtualpos_x has to be removed for real screen position
-                    ;lea.l     virtualScreenPosX,a5
-                    ;sub       (a5),d0  
+                   move.w    $2(a4),d0                                           ;x
+                   sub.w     10(a5),d0                                           ; sub width/2
+                   move.w    $4(a4),d1                                           ;y 
+                   sub.w     12(a5),d1                                           ;sub height/2
 
                    mulu      #trenchscreenlineSize,d1 
                    add.l     d1,a2 
@@ -264,8 +262,10 @@ e_restore_init_blitter
 
                    move.l    2(a4),a0                                            ; destination screen 
                    move.l    6(a4),a1                                            ; repair source
+                   ;lea.l     test,a1
 
-                   move      -2,$dff062                                          ;B          ;hardcoded, no modulo needed
+                   ;move      #-2,$dff062                                         ;B          ;hardcoded, no modulo needed
+                   move      #0,$dff062                                          ;B          ;hardcoded, no modulo needed
                    move      12(a4),$dff066                                      ;D
 
 
@@ -285,3 +285,93 @@ e_restore_next
                   ; size has to be adapted
 e_restore_exit:
                    rts
+
+
+enemies_move:
+                   move.w    trenchframecounter,d0
+                   tst.w     d0
+                   bne.s     .noFrameChange	
+                   lea       e_move_pointer,a2
+                   lea       enemy_active_list,a1
+                   
+
+                   move.l    a2,a0
+                   move.l    (a0),a0
+                   
+                   move.l    (a0),6(a1)                                          ; set frame
+                   move.w    4(a0),2(a1)                                         ; set x
+                   move.w    6(a0),4(a1)                                         ; set y
+
+                   add.l     #8,(a2)
+
+                   move.l    (a2),d0 
+                   lea.l     e_move_last,a2
+                   cmp.l     a2,d0
+                   bne.s     .s
+                   lea.l     e_move_list,a2
+                   move.l    a2,e_move_pointer
+                   bra.s     .s
+.s:
+                   
+.noFrameChange  
+                   rts
+
+
+TIES_LIST_SIZE                               = 14
+
+e_move_pointer     dc.l      e_move_list
+
+e_move_list:
+                   dc.l      ties+(TIES_LIST_SIZE*0)
+                   dc.w      188,100
+                   dc.l      ties+(TIES_LIST_SIZE*0)
+                   dc.w      188,110
+                   dc.l      ties+(TIES_LIST_SIZE*0)
+                   dc.w      188,120
+                   dc.l      ties+(TIES_LIST_SIZE*0)
+                   dc.w      188,130
+
+                   dc.l      ties+(TIES_LIST_SIZE*1)
+                   dc.w      188,140
+                   dc.l      ties+(TIES_LIST_SIZE*1)
+                   dc.w      188,150
+                   dc.l      ties+(TIES_LIST_SIZE*1)
+                   dc.w      188,163
+
+                   dc.l      ties+(TIES_LIST_SIZE*2)
+                   dc.w      188,163
+                   dc.l      ties+(TIES_LIST_SIZE*2)
+                   dc.w      188,163
+                   dc.l      ties+(TIES_LIST_SIZE*2)
+                   dc.w      188,163
+
+                   dc.l      ties+(TIES_LIST_SIZE*3)
+                   dc.w      188,163
+                   dc.l      ties+(TIES_LIST_SIZE*3)
+                   dc.w      188,150
+                   dc.l      ties+(TIES_LIST_SIZE*3)
+                   dc.w      188,140
+
+                   dc.l      ties+(TIES_LIST_SIZE*4)
+                   dc.w      188,130
+                   dc.l      ties+(TIES_LIST_SIZE*4)
+                   dc.w      188,120
+
+
+                   dc.l      ties+(TIES_LIST_SIZE*5)
+                   dc.w      188,110
+                   dc.l      ties+(TIES_LIST_SIZE*5)
+                   dc.w      188,100
+
+                   dc.l      ties+(TIES_LIST_SIZE*6)
+                   dc.w      188,90
+                   dc.l      ties+(TIES_LIST_SIZE*6)
+                   dc.w      188,80
+
+                   dc.l      ties+(TIES_LIST_SIZE*7)
+                   dc.w      188,70
+                   dc.l      ties+(TIES_LIST_SIZE*7)
+                   dc.w      188,60
+e_move_last:
+                   dc.l      ties+(TIES_LIST_SIZE*8)
+                   dc.w      188,50
