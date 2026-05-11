@@ -17,3 +17,7 @@ Similarly with the cockpit, we can get by with just a few colors:
 
 That is, we use dual playfield mode for the implementation. One playfield for the trench and one playfield for the cockpit. Laser shots and explosions can be realized with sprites. 
 
+See Video of the Demo:
+
+[![amiga 500 Star Wars Demo](https://img.youtube.com/vi/NVSqwnZrpik/0.jpg)](https://www.youtube.com/watch?v=NVSqwnZrpik)
+
